@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "My Extensions",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "action": {
+    "default_popup": "newtab/newtab.html",
+    "default_icon": "images/logo.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab/newtab.html"
+  }
+}
