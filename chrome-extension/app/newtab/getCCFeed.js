@@ -22,7 +22,7 @@ function getCCFeed() {
       for (let i = 0; i < 6; i++) {
         const title = items[i].getElementsByTagName("title")[0].textContent;
         console.log(title);
-        challengeList.appendChild(stringToNode(`<p>${title}</p>`));
+        challengeList.appendChild(stringToNode(`<p>${i + 1}. ${title}</p>`));
       }
     })
     .catch(error => console.error(error));
