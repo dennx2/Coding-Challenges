@@ -13,6 +13,7 @@ If you’ve never built a Chrome extension before the Chrome for Developer websi
 ## Demo
 
 This is the output of my solution.
-![output](./demo/screenshot.png)
+
+![screenshot](./demo/screenshot.png)
 
 
