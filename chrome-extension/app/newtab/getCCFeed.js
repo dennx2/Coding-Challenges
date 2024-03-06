@@ -4,7 +4,7 @@
 function getCCFeed() {
   const challengeList = document.querySelector("#challenge-list");
 
-  const url = "https://codingchallenges.substack.com/feed";
+  const url = "http://localhost:3000/chromeext-xml";
   fetch(url)
     .then(res => res.text())
     .then(xmlString => {
@@ -16,17 +16,13 @@ function getCCFeed() {
         const tempContainer = document.createElement("p");
         htmlString = htmlString.trim();
         tempContainer.innerHTML = htmlString;
-        return tempContainer.firstChild();
+        return tempContainer.firstChild;
       }
 
-      for (let i = 0; i < 4; i++) {
-        const title = items[i].getElementsByTagName("title");
+      for (let i = 0; i < 6; i++) {
+        const title = items[i].getElementsByTagName("title")[0].textContent;
         console.log(title);
-        challengeList.appendChild(
-          stringToNode(`
-            <p>${title}</p>
-        `)
-        );
+        challengeList.appendChild(stringToNode(`<p>${title}</p>`));
       }
     })
     .catch(error => console.error(error));
