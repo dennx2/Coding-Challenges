@@ -9,12 +9,21 @@ def create_rainbow_table(word_list_path: str, rainbow_path: str) -> None:
     """
     Create a rainbow table file with a word list
     """
+
+    # Open the word list file for reading and the rainbow table file for writing
     with gzip.open(word_list_path, "rb") as input:
         with gzip.open(rainbow_path, "wb") as output:
             for psd in input.readlines():
+                # Calculate the hash of the password and format it with a delimiter
                 content = f"{md5(psd.strip()).hexdigest()}|delimiter|"
-                # logging.debug(content)
-                output.write(content.encode() + psd)
+                try:
+                    # Encode the content to bytes
+                    b_content = content.encode()
+                except UnicodeEncodeError as e:
+                    logging.error("Encoding failed:", e)
+                else:
+                    # Write the content and the original password to the rainbow table in bytes
+                    output.write(b_content + psd)
 
 
 if __name__ == "__main__":
