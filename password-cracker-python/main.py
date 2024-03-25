@@ -10,8 +10,11 @@ from utils.rainbow import lookup_rainbow_table
 
 def main():
     hashed_psd = input("Enter the hash you want to crack: ")
-    method = input("Crack Method?\n(1) Brute force\n(2) Word list\n(3) Rainbow table\n")
+    if not hashed_psd:
+        hashed_psd = "2bdb742fc3d075ec6b73ea414f27819a"
     hashed_psd = hashed_psd.strip()
+
+    method = input("Crack Method?\n(1) Brute force\n(2) Word list\n(3) Rainbow table\n")
 
     try:
         match method:
@@ -33,7 +36,8 @@ def main():
                 print("Cracking...")
                 result = lookup_rainbow_table(hashed_psd, rainbow_path)
             case _:
-                pass
+                print("Invalid option, please try again.")
+                exit()
     except Exception as e:
         logging.error("Something went wrong:", e)
     else:
