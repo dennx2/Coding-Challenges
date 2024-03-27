@@ -1,7 +1,8 @@
 import gzip
-from hashlib import md5
 import logging
+
 from .timer_decorator import timer
+from .hash_function import md5_hash
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -18,7 +19,8 @@ def create_rainbow_table(word_list_path: str, rainbow_path: str) -> None:
         delimiter = "|delimiter|"
         for psd in input:
             # Calculate the hash of the password and format it with a delimiter
-            content = f"{md5(psd.strip()).hexdigest()}{delimiter}"
+            hashed_psd = md5_hash(psd.strip())
+            content = f"{hashed_psd}{delimiter}"
             try:
                 # Encode the content to bytes
                 b_content = content.encode()
